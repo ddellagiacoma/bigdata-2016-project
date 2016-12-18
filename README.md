@@ -1,1 +1,1 @@
-# bigdata-2016-project
+# Big data and social networks
