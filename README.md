@@ -18,7 +18,7 @@ As we can see, we haven't get colors and BFS stuff anymore, our program require 
 
 Now step by step, assuming that the reader has the basic knowledge on how Hadoop MapReduce works, we are going to explain how our project works and also how it is written. First of all we want to show our program's classes and explain a little bit their functionality, after that we will explain the implementation of the software in its entirety.
 
-###	BaseJob
+### BaseJob.java
 
 Our software doesn't need a complex and structured job, so we decided to keep the Hadoop base job structure and adapt it with just slightly modifications.
 
@@ -26,7 +26,7 @@ The following is an abstract base class for the programs in the graph algorithm 
 
 Finally, into BaseJob is declared the abstract class JobInfo that contains getter methods to get the program-specific classes associated with Job.
 
-###	Driver
+### Driver.java
 
 This class contains the driver to execute the job and invoke the map/reduce functions and the main class. The task of the main class is just to create the output directory and call the run method.
 
@@ -38,19 +38,19 @@ MapperCaller extends the MapperWorker class. MapperCaller contains a map method 
 
 ReducerCaller extends instead the ReducerWorker. ReduceCaller contains a reduce method who takes as parameters the same parameters than the map method written above. Reduce method is in charge to initializing and instantiating an empty node , then calling the reduce method of the super class passing the keynode, input value, Context object and the node (just created) as parameters.
 
-###	Node
+### Node.java
 
 Node class contains the information about the node ID, the list of adjacent nodes, the distance from the source, the color of the node (color could be white for unvisited node, gray for visited node and black for the node which has been visited by all the keynodes) ,the parent node and the starter list(list of the keynodes that visited the node).
 
 The node class, at the first iteration, read inputs for setting the nodes as required in a BFS for starting the job. In all the other iterations the node's work is reading and interpreting the node's information by the input files. Node class also contains his getter and setter method as well and a method for getting all the node's information appended in a string.
 
-###	MapperWorker
+### MapperWorker.java
 
 MapperWorker is the base mapper class for the programs that use parallel breadth-first search algorithm. In this class are implemented the map method which is responsible for the mapper work.
 
 The method takes the keynode, the input value, the Context object and Node (input node) as parameters. The map function, for each gray node, emit each of the adjacent nodes as a new node and set them. Once finished the map function writes the results (the news nodes with their setting) on the context in order to pass them at the reducer.
 
-###	ReducerWorker
+### ReducerWorker.java
 
 ReducerWorker is the base reducer class for the programs that use parallel breadth-first search algorithm. It combines the information for a single node. The complete list of adjacent nodes, the minimum distance from the source, the darkest color, the parent node of the node that is being processed , and the starter list are determined in the reducer step. This information is emitted from the reducer function to the output file.
 
