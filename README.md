@@ -22,7 +22,7 @@ Now step by step, assuming that the reader has the basic knowledge on how Hadoop
 
 Our software doesn't need a complex and structured job, so we decided to keep the Hadoop base job structure and adapt it with just slightly modifications.
 
-The following is an abstract base class for the programs in the graph algorithm tool kit. This class provides an abstraction for setting the various classes associated with a job in a MapReduce program. The base job class contains a setupJob method that takes the job name and a JobInfo object as parameters and returns a job that is used by the driver to execute the MapReduce program [12]. In this method are set the mapper and reducer classes, the number of reducer used for the program (easily editable), the types of the output key and output value of the mapper and reducer.
+The following is an abstract base class for the programs in the graph algorithm tool kit. This class provides an abstraction for setting the various classes associated with a job in a MapReduce program. The base job class contains a setupJob method that takes the job name and a JobInfo object as parameters and returns a job that is used by the driver to execute the MapReduce program. In this method are set the mapper and reducer classes, the number of reducer used for the program (easily editable), the types of the output key and output value of the mapper and reducer.
 
 Finally, into BaseJob is declared the abstract class JobInfo that contains getter methods to get the program-specific classes associated with Job.
 
